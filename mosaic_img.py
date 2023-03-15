@@ -10,6 +10,8 @@ import cv2
 original_img = "your_path"
 imgs_path = "your_path"
 output_path = "your_path"
+output_img_size = (5000, 5000)
+fragment_size = [60, 60]
 
 def get_average_color(img):
     average_color = np.average(np.average(img, axis=0), axis=0)
@@ -50,9 +52,9 @@ with open("./cache.json", "r") as file:
     data = json.load(file)
 
 img = cv2.imread(original_img)
-img = cv2.resize(img, (5000, 5000))
+img = cv2.resize(img, output_img_size)
 img_height, img_width, _ = img.shape
-tile_height, tile_width = 60, 60
+tile_height, tile_width = fragment_size
 num_tiles_h, num_tiles_w = img_height // tile_height, img_width // tile_width
 img = img[:tile_height * num_tiles_h, :tile_width * num_tiles_w]
 
