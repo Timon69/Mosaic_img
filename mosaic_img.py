@@ -7,9 +7,9 @@ import numpy as np
 import cv2
 
 
-original_img = "/content/rem3.jpg"
-imgs_path = "/content/drive/MyDrive/ht"
-output_path = "./result.jpg"
+original_img = "your_path"
+imgs_path = "your_path"
+output_path = "your_path"
 
 def get_average_color(img):
     average_color = np.average(np.average(img, axis=0), axis=0)
