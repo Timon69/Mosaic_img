@@ -12,7 +12,8 @@ from tkinter import filedialog
 original_img = ""
 imgs_path = ""
 output_path = ""
-output_size = 5000
+output_width = 5000
+output_height = 5000
 tile_width = 60
 tile_height = 60
 
@@ -37,13 +38,14 @@ def get_closest_color(color, colors):
     return closest_color
 
 def generate_image():
-    global original_img, imgs_path, output_path, output_size, tile_width, tile_height
+    global original_img, imgs_path, output_path, output_size_width, output_size_height, tile_width, tile_height
 
     # Get the input and output paths and directories
     original_img = input_path_var.get()
     imgs_path = input_dir_var.get()
     output_path = output_path_var.get()
-    output_size = int(output_size_var.get())
+    output_size_width = int(output_size_width.get())
+    output_size_height = int(output_size_height.get())
     tile_width = int(tile_width_var.get())
     tile_height = int(tile_height_var.get())
 
@@ -67,7 +69,7 @@ def generate_image():
         data = json.load(file)
 
     img = cv2.imread(original_img)
-    img = cv2.resize(img, (output_size, output_size))
+    img = cv2.resize(img, (output_width, output_height))
     img_height, img_width, _ = img.shape
     num_tiles_h, num_tiles_w = img_height // tile_height, img_width // tile_width
     img = img[:tile_height * num_tiles_h, :tile_width * num_tiles_w]
@@ -134,8 +136,14 @@ tile_height_label.pack()
 tile_height_entry.pack()
 
 output_size_label = tk.Label(root, text="Output Width")
-output_size_var = tk.StringVar(value=str(output_size))
-output_size_entry = tk.Entry(root, textvariable=output_size_var, width=10)
+output_size_width = tk.StringVar(value=str(output_width))
+output_size_entry = tk.Entry(root, textvariable=output_size_width, width=10)
+output_size_label.pack()
+output_size_entry.pack()
+
+output_size_label = tk.Label(root, text="Output Height")
+output_size_height = tk.StringVar(value=str(output_height))
+output_size_entry = tk.Entry(root, textvariable=output_size_height, width=10)
 output_size_label.pack()
 output_size_entry.pack()
 
