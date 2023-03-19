@@ -16,7 +16,7 @@ output_path = ""
 output_img_size = (10000, 10000)
 fragment_size = [100, 100]
 cache = False
-cache_path = f'/home/timon/PycharmProjects/My_moduls/Mosaic_img/caches/{imgs_path.split("/")[-1]}_cache.json'
+cache_path = f'./{imgs_path.split("/")[-1]}_cache.json'
 
 
 def get_average_color(img):
